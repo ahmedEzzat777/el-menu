@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import Router from "./components/Router";
+import CategoryService from "./services/CategoryService";
 
 function App() {
+  // useEffect(() => {
+  //   CategoryService.getCategories("H9oHi2").then((d) => {
+  //     console.log(d);
+  //   });
+  //   CategoryService.getCategoryItems(
+  //     "H9oHi2",
+  //     "66fc567f-b841-48f8-98eb-616eb4de88ef"
+  //   ).then((d) => {
+  //     console.log(d);
+  //   });
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router/>
   );
 }
 
