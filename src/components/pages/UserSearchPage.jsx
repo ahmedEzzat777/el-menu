@@ -15,7 +15,7 @@ export default function UserSearchPage() {
       </Stack>
       <TextField
         id="userId"
-        label="user id"
+        label="User id"
         value={userId}
         onChange={(e) => setUserId(e.target.value)}
       />
