@@ -1,14 +1,5 @@
-import { ref, onValue } from "firebase/database";
+import { ref, get } from "firebase/database";
 
 export default function getFromDb(db, url) {
-  return new Promise((resolve, reject) => {
-    try {
-      onValue(ref(db, url), (snapshot) => {
-        const data = snapshot.val();
-        resolve(data);
-      });
-    } catch (e) {
-      reject(e);
-    }
-  });
+  return get(ref(db, url)).then((snapshot) => snapshot.val());
 }
