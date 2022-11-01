@@ -3,8 +3,9 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
+  Stack,
+  Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoryService from "../../services/CategoryService";
@@ -16,9 +17,11 @@ export default function CategoriesPage(props) {
   const [categoryId, setCategoryId] = useState(null);
 
   useEffect(() => {
-    CategoryService.getCategories(userId).then((d) => {
-      setCategories(d);
-    });
+    CategoryService.getCategories(userId)
+      .then((d) => {
+        setCategories(d);
+      })
+      .catch((e) => console.log(e));
   }, [userId]);
 
   const categoriesList = (
@@ -38,15 +41,20 @@ export default function CategoriesPage(props) {
     </ImageList>
   );
   return (
-    <Box>
+    <Stack>
       {categoryId ? (
-        <Button onClick={(e) => setCategoryId(null)}>Back</Button>
+        <Stack direction="row">
+          <Button onClick={(e) => setCategoryId(null)}>Back</Button>
+        </Stack>
+      ) : null}
+      {categories.length === 0 ? (
+        <Typography>No categories to this user!</Typography>
       ) : null}
       {categoryId ? (
         <ItemsList userId={userId} categoryId={categoryId} />
       ) : (
         categoriesList
       )}
-    </Box>
+    </Stack>
   );
 }

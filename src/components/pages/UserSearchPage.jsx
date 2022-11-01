@@ -1,17 +1,21 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button, IconButton, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useState } from "react";
 import QrCodeIcon from "@mui/icons-material/QrCode";
 import { useNavigate } from "react-router-dom";
+import QrReader from "react-qr-scanner";
 
 export default function UserSearchPage() {
   const navigate = useNavigate();
   const [userId, setUserId] = useState("");
+  const [bsOpen, setBsOpen] = useState(false);
 
-  return (
+  const userPage = (
     <Stack spacing={2}>
       <Stack direction="row" width="100%" justifyContent="center">
-        <QrCodeIcon />
+        <IconButton onClick={(e) => setBsOpen(true)}>
+          <QrCodeIcon />
+        </IconButton>
       </Stack>
       <TextField
         id="userId"
@@ -22,4 +26,22 @@ export default function UserSearchPage() {
       <Button onClick={(e) => navigate("categories/" + userId)}>Go</Button>
     </Stack>
   );
+
+  const barcodeScanner = (
+    <Stack>
+      <Button onClick={(e) => setBsOpen(false)}>Close</Button>
+      <QrReader
+        delay={0}
+        onError={(e) => console.log(e)}
+        onScan={(val) => {
+          if (val) {
+            setUserId(val.text);
+            setBsOpen(false);
+          }
+        }}
+      />
+    </Stack>
+  );
+
+  return <Box>{bsOpen ? barcodeScanner : userPage}</Box>;
 }
