@@ -3,18 +3,14 @@ import {
   ImageList,
   ImageListItem,
   ImageListItemBar,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoryService from "../../services/CategoryService";
-import ItemsList from "../ItemsList";
+import ItemsList from "../divs/ItemsList";
 
 export default function CategoriesPage(props) {
-  const theme = useTheme();
-  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
   const { userId } = useParams();
   const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
@@ -42,7 +38,7 @@ export default function CategoriesPage(props) {
     </ImageList>
   );
   return (
-    <Box width={isSmUp ? "90vh" : "80vw"}>
+    <Box>
       {categoryId ? (
         <Button onClick={(e) => setCategoryId(null)}>Back</Button>
       ) : null}
