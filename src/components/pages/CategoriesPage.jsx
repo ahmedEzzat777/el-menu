@@ -30,7 +30,10 @@ export default function CategoriesPage(props) {
   }, [userId]);
 
   const categoriesList = (
-    <ImageList sx={{ height: isSmUp ? "60vh" : "80vh", overflow: "auto" }}>
+    <ImageList
+      cols={isSmUp ? 3 : 2}
+      sx={{ height: isSmUp ? "60vh" : "80vh", overflow: "auto" }}
+    >
       <ImageListItem>
         <Button onClick={(e) => setCategoryId("all")}>
           <ImageIcon style={{ width: "100%", height: "100%" }} />
