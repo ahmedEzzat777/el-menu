@@ -13,7 +13,9 @@ export default class CategoryService {
 
   static getCategoryItems(userId, categoryId) {
     return getFromDb(db, `${userId}/user/productItems`).then((d) =>
-      spreadObject(d).filter((x) => x.categoryGuid === categoryId)
+      spreadObject(d).filter(
+        (x) => categoryId === "all" || x.categoryGuid === categoryId
+      )
     );
   }
 }
