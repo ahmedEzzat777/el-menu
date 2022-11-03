@@ -42,7 +42,7 @@ export default function CategoriesPage(props) {
         <ImageListItem key={idx}>
           <Button onClick={(e) => setCategoryId(item.CategoryGuid)}>
             <img
-              style={{ width: "100%" }}
+              style={{ width: "100%", height: "100%" }}
               src={item.ImagePath}
               alt={item.name}
               loading="lazy"

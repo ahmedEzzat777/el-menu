@@ -8,6 +8,8 @@ import {
   Paper,
   TextField,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Stack } from "@mui/system";
 import { useEffect, useMemo, useState } from "react";
@@ -17,6 +19,8 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import QrReader from "react-qr-scanner";
 
 export default function ItemsList(props) {
+  const theme = useTheme();
+  const isSmUp = useMediaQuery(theme.breakpoints.up("sm"));
   const [items, setItems] = useState([]);
   const [search, setSearch] = useState("");
   const [bsOpen, setBsOpen] = useState(false);
@@ -62,7 +66,7 @@ export default function ItemsList(props) {
           <QrCodeIcon />
         </IconButton>
       </Stack>
-      <Paper sx={{ height: "75vh", overflow: "auto" }} m={1}>
+      <Paper sx={{ height: isSmUp ? "55vh" : "75vh", overflow: "auto" }} m={1}>
         <List>
           {filteredItems.length === 0 ? (
             <Typography>no items in this category!</Typography>
