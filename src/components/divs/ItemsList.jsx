@@ -126,6 +126,7 @@ export default function ItemsList(props) {
     <Stack>
       <Button onClick={(e) => setBsOpen(false)}>Close</Button>
       <QrReader
+        facingMode="rear"
         delay={0}
         onError={(e) => console.log(e)}
         onScan={(val) => {
