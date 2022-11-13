@@ -31,7 +31,7 @@ export default function UserSearchPage() {
     <Stack>
       <Button onClick={(e) => setBsOpen(false)}>Close</Button>
       <QrReader
-        facingMode="rear"
+        facingMode="environment"
         delay={0}
         onError={(e) => console.log(e)}
         onScan={(val) => {
